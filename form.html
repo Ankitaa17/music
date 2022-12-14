@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <title>Document</title>
+    <style>
+        *,
+        *::before,
+        *::after{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 62.5%;
+            font-family: sans-serif;
+
+        }
+
+        .container{
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(242, 249, 255);
+            display: grid;
+            place-items: center;
+            
+        }
+
+        .Music{
+            width: 35rem;
+            height: 560px;
+            background: white;
+           border-radius: 20px;
+            box-shadow: 0 12px 30px 5px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+        }
+
+        #title {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            word-spacing: 5px;
+            color: rgb(5, 5, 5);
+            margin: 20px 0 5px 0;
+            font-size: 25px;
+            font-weight: 500;
+            text-shadow: 0 3px 5px rgba(0, 0, 0,0.3);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+         
+        }
+        #artist{
+            text-transform: capitalize;
+            letter-spacing: 1px;
+           
+            color: rgb(216, 216, 216);
+            margin-bottom: 40px ;
+            font-size: 25px;
+            font-weight: 400;
+            font-family: cursive;
+           
+
+            
+        }
+        .img_cont{
+            width: 250px;
+            height: 250px;
+            margin: auto;
+            margin-bottom: 30px;
+         
+            
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0  12px 30px 5px  rgba(0, 0, 0,0.4);
+        }
+        .m_control {
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            margin-top: 30px;
+           
+        }
+        .m_control  .fa{
+            color: rgb(2, 2, 2);
+            font-size: 20px;
+            cursor: pointer;
+            filter: drop-shadow(0,12px ,30px 5px rgba(0, 0, 0,0.4) );
+        }
+        .m_control  .fa:hover{
+            color: grey;
+        }
+
+        
+        .m_control .main{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #fff;
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+            
+        }
+        .m_control .main:hover{
+            background-color: #fff;
+            color: black;
+            box-shadow:  0 10px 20px 2px rgba(0, 0, 0,0.4) ;
+        }
+        .animet{
+
+            animation:jsr 3s  linear infinite ;
+        }
+        @keyframes  jsr{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        .icon{
+            font-size: 20px;
+            display: flex;
+            align-items: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+        }
+        .icon .fa{
+            color: rgb(2, 2, 2);
+            font-size: 20px;
+            cursor: pointer;
+            filter: drop-shadow(0,12px ,30px 5px rgba(0, 0, 0,0.4) ); color: rgb(2, 2, 2);
+          
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <section>
+
+        <div class="container">
+                       <div class="Music">
+
+                        
+                        
+                        <h2 id="title">DIL KO KARAAR</h2>
+                        <h2 id="artist">Yaseer desai</h2>
+                        <div class="img_cont">
+                            <img src="New folder/song-1.jpg" alt="">
+                           
+                           
+                        </div>
+                        <audio src="music/song-1.mp3" ></audio>
+                        <div class="icon">
+                            <i class="fa fa-heart-o"></i>
+                            <i class="fa fa-share-alt"></i>
+                            <i class="fa fa-trash-o"></i>
+                            <i class="fa fa-list-ul"></i>
+                            
+                            
+                                 
+                             </div>
+
+                            
+
+                        <div class="m_control">
+                            <i class="fa fa-backward" id="prev" title="previous"></i>
+                            <i class="fa fa-play main" id="play" title="play"></i>
+                            <i class="fa fa-forward" id="next" title="next"></i>
+
+                        </div>
+                       
+
+                       
+                    </div>
+               
+        </div>
+
+
+
+      
+    </section>
+    <script>
+        const music = document.querySelector("audio");
+        const img = document.querySelector("img");
+        const play = document.getElementById("play");
+        const artist = document.getElementById("artist");
+        const title = document.getElementById("title");
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+
+        const songs =[
+        {
+                name: "song-1",
+                title: "DIL KO KARAAR",
+                artist: "Yaseer desai",
+            },
+            {
+                name: "song-2",
+                title: "Mere dil de  gali",
+                artist: "zack knight",
+            },
+            {
+                name: "song-3",
+                title: "Dil mai ho tum",
+                artist: "arijit singh",
+            },
+        ];
+
+        let pl=false;
+
+       const playMusic  = () => {
+            pl = true;
+            music.play();
+            play.classList.replace("fa-play" , "fa-pause");
+            img.classList.add("animet");
+            
+
+        };
+        const pauseMusic  = () => {
+        pl = false;
+            music.pause();
+            play.classList.replace("fa-pause" , "fa-play");
+            img.classList.remove("animet");
+            
+
+        };
+        play.addEventListener("click", () =>{
+            
+              pl ? pauseMusic() : playMusic();
+            
+        });
+            const loadSong = (songs) => {
+                title.textContent = songs.title;
+                artist.textContent = songs.artist;
+                music.src = "music/" +songs.name +  ".mp3";
+                img.src = "New folder/" +songs.name +  ".jpg";
+
+            };
+            songIndex = 0;
+           // loadSong(songs[1]);
+           const nextSong = () =>  {
+            songIndex = (songIndex +1)% songs.length;
+            loadSong(songs[songIndex]);
+            playMusic();
+           };
+           const prevSong = () =>  {
+            songIndex = (songIndex -1  + songs.length)% songs.length;
+            loadSong(songs[songIndex]);
+            playMusic();
+           };
+
+            next.addEventListener("click", nextSong);
+            prev.addEventListener("click", prevSong);
+            
+        
+
+    </script>
+</body>
+
+</html>
